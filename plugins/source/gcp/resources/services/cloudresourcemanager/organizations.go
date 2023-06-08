@@ -16,6 +16,9 @@ func Organizations() *schema.Table {
 		Resolver:    fetchOrganizations,
 		Multiplex:   client.OrgMultiplex,
 		Transform:   client.TransformWithStruct(&crmv1.Organization{}, transformers.WithPrimaryKeys("Name")),
+		Relations: []*schema.Table{
+			TagKeys(),
+		},
 	}
 }
 
